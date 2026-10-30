@@ -24,7 +24,7 @@ jobs:
 
       - name: Display Job Variable
         run: |
-          echo "Application: $APP_NAME"
+          echo "Application : $APP_NAME"
 
       - name: Step-Level Variable
         env:
