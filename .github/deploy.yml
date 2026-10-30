@@ -1,0 +1,49 @@
+name: Environment Variables Demo
+
+on:
+  workflow_dispatch:
+
+# Workflow-level variable
+# Available to all jobs and steps
+env:
+  COMPANY_NAME: ABC Technologies
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    # Job-level variable
+    # Available to all steps inside the build job
+    env:
+      APP_NAME: StudentApp
+
+    steps:
+      - name: Display Workflow Variable
+        run: |
+          echo "Company: $COMPANY_NAME"
+
+      - name: Display Job Variable
+        run: |
+          echo "Application: $APP_NAME"
+
+      - name: Step-Level Variable
+        env:
+          ENVIRONMENT: Development
+        run: |
+          echo "Deployment Environment: $ENVIRONMENT"
+          echo "Company: $COMPANY_NAME"
+          echo "Application: $APP_NAME"
+
+      - name: Display Variables Again
+        run: |
+          echo "Company: $COMPANY_NAME"
+          echo "Application: $APP_NAME"
+          echo "Environment: $ENVIRONMENT"
+
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Display Company
+        run: |
+          echo "Company: $COMPANY_NAME"
